@@ -4,7 +4,7 @@ var k = 0;
 var speed = 100;
 var bash_history = [];
 
-var txt = 'cat about_me.txt';
+var init_cmd = 'cat about_me.txt';
 var contact_info = 'SYNOPSIS:<br>&emsp;contact [OPTION]<br><br>-m, --mail<br>&emsp;send me a mail<br><br>-t, --twitter<br>&emsp;visit my twitter page<br><br>-fb, --facebook<br>&emsp;visit my facebook profile<br><br>-lin, --linkedin<br>&emsp;visit my linkedin page'
 var credits = 'Please refresh to begin another session.';
 var love = 'Made with ❤ by Nandha Kishore';
@@ -20,14 +20,15 @@ var startBoot;
 var command;
 
 window.onload = matrixAnim;
+// window.onload = beginPage;
 
 function beginSplash() {
-	document.getElementById("splash").style.display = "block";
+	document.getElementById("splash").className = "visible";
 	startBoot = setInterval(bootSequence, 200);
 }
 
 function matrixAnim() {
-	var c = document.getElementById("c");
+	var c = document.getElementById("matrix-canvas");
 	var ctx = c.getContext("2d");
 
 	//making the canvas full screen
@@ -91,8 +92,8 @@ function bootSequence() {
 	if(k == bootup.length){
 		clearInterval(startBoot);
 		setTimeout(function(){
-			document.getElementById("splash").style.display = "none";
-			document.getElementById("terminal").style.display = "block";
+			document.getElementById("splash").className = "hidden";
+			document.getElementById("terminal").className = "visible";
 			beginPage();
 		}, 1000);
 	}
@@ -132,22 +133,22 @@ function setCaretPosition(ctrl, pos) {
 
 function typeWriter() {
 
-	var cursor1 = document.getElementById("cursor1");
-	var cursor2 = document.getElementById("cursor2");
+	var init_cursor = document.getElementById("init-cursor");
+	var cmd_cursor = document.getElementById("cmd-cursor");
 
-	cursor1.className = "remove-anim";
+	init_cursor.className = "remove-anim";
 
-	if (i < txt.length) {
-		document.getElementById("cursor1").innerHTML += txt.charAt(i);
+	if (i < init_cmd.length) {
+		document.getElementById("init-cursor").innerHTML += init_cmd.charAt(i);
 		i++;	
 		setTimeout(typeWriter, speed);
   	}
-  	if (i == txt.length) {
-  		cursor2.className = "animated";
+  	if (i == init_cmd.length) {
+  		cmd_cursor.className = "animated";
   		setTimeout(function() {
-  			document.getElementById("about").style.display = "block";
+  			document.getElementById("about").className = "visible";
   			setTimeout(createNewCommandLine, 500);
-  			cursor2.className = "remove-anim";
+  			cmd_cursor.className = "remove-anim";
   		}, 1000);
   	}
 }
@@ -160,7 +161,7 @@ function createNewCommandLine (option) {
 	}
 
 	var pwd = document.getElementsByClassName("pwd");
-	var usercommand = document.getElementsByClassName("user-command");
+	var user_command = document.getElementsByClassName("user-command");
 	command = document.getElementsByClassName("command");
 	var response = document.getElementsByClassName("response");
 	var cursor = document.getElementsByClassName("cursor");
@@ -169,138 +170,139 @@ function createNewCommandLine (option) {
 	window.scrollTo(0, document.body.scrollHeight);
 
 	cursor[j].className = "animated cursor";
-	response[j].style.display = "none";
-	pwd[j].style.display = "block";
+	response[j].className = "response hidden";
+	pwd[j].className = "pwd visible";
 	command[j].value = "";
-	usercommand[j].innerHTML = "";
+	user_command[j].innerHTML = "";
 	bash_history[j] = "";
 	command[j].focus();
 	command[j].removeAttribute('readOnly');
 	command[j].onkeyup = function(e) {
 		if (e.keyCode == 13) {
-			switch (usercommand[j].innerHTML) {
+			switch (user_command[j].innerHTML) {
 				case "man contact":
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = contact_info;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();						
 					break;
 
 				case "resume":
 					window.open('Resume.pdf', '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Compiling project list...<br>Opening Resume.pdf";
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "github":
 					window.open(url_git, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Redirecting to " + url_git;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact -fb":
 					window.open(url_fb, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Redirecting to " + url_fb;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact --facebook":
 					window.open(url_fb, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Redirecting to " + url_fb;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact -t":
 					window.open(url_t, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Redirecting to " + url_t;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact --twitter":
 					window.open(url_t, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Redirecting to " + url_t;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact -lin":
 					window.open(url_lin, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Redirecting to " + url_lin;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact --linkedin":
 					window.open(url_lin, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Redirecting to " + url_lin;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact -m":
 					window.open(url_m, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Drafting mail to jnandhakishore12@gmail.com";
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "contact --mail":
 					window.open(url_m, '_blank');
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
 					response[j].innerHTML = "Drafting mail to jnandhakishore12@gmail.com";
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
 
 				case "exit":
 					var footnote = document.createElement("p");
+					footnote.id = "footnote";
 					footnote.innerHTML = credits;
 					var madeBy = document.createElement("footer");
 					madeBy.className = "credits";
@@ -319,11 +321,11 @@ function createNewCommandLine (option) {
 					break;
 
 				default:
-					response[j].style.display = "block";
+					response[j].className = "response visible";
 					response[j].innerHTML = 'bash: ' + command[j].value + ': command not found';
 					cursor[j].className = "remove-anim cursor";
 					command[j].readOnly = true;
-					bash_history[j] = usercommand[j].innerHTML;
+					bash_history[j] = user_command[j].innerHTML;
 					j++;
 					createNewCommandLine();
 					break;
@@ -334,21 +336,21 @@ function createNewCommandLine (option) {
 			bash_history[j] = command[j].value;
 			index--;
 			if (index > -1)
-				usercommand[j].innerHTML = bash_history[index];
+				user_command[j].innerHTML = bash_history[index];
 			else
 				index = 0;
 		} else if (e.keyCode == 40) {
 			bash_history[j] = command[j].value;
 			index++;
 			if (index < j + 1)
-				usercommand[j].innerHTML = bash_history[index];
+				user_command[j].innerHTML = bash_history[index];
 			else
 				index = j;
 		} else if (e.keyCode == 32 && command[j].value.charAt(command[j].value.length - 2) == ' ') {
 			command[j].value -= ' ';
 		} else {
 			if (index == j) {
-				usercommand[j].innerHTML = command[j].value;
+				user_command[j].innerHTML = command[j].value;
 				bash_history[j] = command[j].value;
 			} else {
 				command[j].value = bash_history[j];
@@ -358,7 +360,7 @@ function createNewCommandLine (option) {
 
 	command[j].onkeydown = function(e) {
 		if (e.keyCode == 8 && index == j){ 
-			usercommand[j].innerHTML = command[j].value;
+			user_command[j].innerHTML = command[j].value;
 		}
 	};
 }

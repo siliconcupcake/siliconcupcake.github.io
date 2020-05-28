@@ -6,8 +6,8 @@
 	<meta name="description" content="My Portfolio Website">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Nandha Kishore J</title>
-	<link rel="stylesheet" type="text/css" href="my_styles.css">
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 	<link rel="shortcut icon" href="resources/shortcut.png">
 </head>
 
@@ -15,41 +15,45 @@
 
 	<script src="index.js"></script>
 
-	<canvas id="c"></canvas>
+	<canvas id="matrix-canvas"></canvas>
 
 	<div class="hidden" id="splash">
-
-		<p class="no-margin">
-			<span class="powerline" id="boot-sequence"></span>
-			<span class="animated powerline" id="cursor0"></span>
+		<p>
+			<span id="boot-sequence"></span>
+			<span class="animated" id="splash-cursor"></span>
 		</p>
-
 	</div>
 
 	<div class="hidden" id="terminal">
 
-		<h4>
-			<span class="powerline"> siliconCupcake @ DeltaForce: /usr/bin $ </span>
-			<span class="animated" id="cursor1"></span>
+		<h4 id="intro-pwd">
+			<div class="prompt">
+				<span class="prompt-username"> siliconcupcake </span>
+				<span class="prompt-arrow"> → </span>
+				<span class="prompt-directory"> /usr/bin </span>
+				<span class="animated" id="init-cursor"></span>
+			</div>
 		</h4>
 		
-		<p>
-			<span class="remove-anim" id="cursor2"></span>
+		<p id="intro-response">
+			<span class="remove-anim" id="cmd-cursor"></span>
 			<span class="hidden" id="about">Well, hello there (:<br>I'm Nandha Kishore, a CSE undergrad at NIT Tiruchirappalli, one of the best learning institutes in the country. I am an Android App Developer at Delta Force, and I love to code. To know more details about me, take a look at my resume by executing the 'resume' command. If you're interested, you can also visit my github profile, to look at some of the projects I've worked on, by executing the 'github' command. If you wish to connect with me on social media platforms, check out the man page of 'contact' for other ways to reach me. If you have nothing else to do on the site, you can 'exit'.</span>
 		</p>
 
 		<div class="options">
 
 			<h4 class="hidden pwd">
-				<span class="powerline"> siliconCupcake @ DeltaForce: /usr/bin $ </span>
-				<input type="text" name="option" class="command" spellcheck="false">
-				<span class="user-command"></span>
-				<span class="animated cursor"></span>
+				<div class="prompt">
+					<span class="prompt-username"> siliconcupcake </span>
+					<span class="prompt-arrow"> → </span>
+					<span class="prompt-directory"> /usr/bin </span>
+					<input type="text" name="option" class="command" spellcheck="false">
+					<span class="user-command"></span>
+					<span class="animated cursor"></span>
+				</div>
 			</h4>
 			
-			<p>
-				<span class="hidden response"></span>
-			</p>
+			<p class="hidden response"> </p>
 
 		</div>
 
