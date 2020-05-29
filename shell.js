@@ -4,7 +4,6 @@ class shell {
 		this.history = [];
 		this.current = 0;
 		this.history_index = 0;
-		this.previous = null;
 
 		// Misc stuff
 		this.debug = true;
@@ -162,14 +161,6 @@ class shell {
 
 			e.preventDefault();
 		}
-
-		// if (e.ctrlKey && e.keyCode == 67) {
-		//     this.input.value = '';
-		//     this.history_index = 0;
-		//     this.input.type = 'text';
-		//     this.previous = null;
-		//     e.preventDefault();
-		// }
 	}
 
 	_keyup(e) {
@@ -179,14 +170,12 @@ class shell {
 				this.history_index++;
 				this.set_history();
 			}
-
 			e.preventDefault();
 		} else if (e.keyCode == 40) { // Key down
 			if (this.history_index >= 1) {
 				this.history_index--;
 				this.set_history();
 			}
-
 			e.preventDefault();
 		}
 	}
@@ -264,20 +253,7 @@ class utils {
 		return object.hasOwnProperty(property);
 	}
 
-	arrayOfObjectsHasKeyValue(arrayOfObjects, key, value) {
-		let result = arrayOfObjects.filter(function (obj) {
-			return obj[key] == value;
-		});
-
-		if (result.length > 0) {
-			return result[0];
-		}
-
-		return false;
-	}
-
 	log(msg, log = false) {
-		console.log(msg);
 
 		if (log) {
 			this.debug(msg);

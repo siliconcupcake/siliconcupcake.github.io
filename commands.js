@@ -123,7 +123,22 @@ let commands = {
                 return this.commands.get("showerthought").help();
             }
 
-            return "Random shower thought";
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "resources/showerthoughts", false);
+            this.stdout("Fetching ShowerThought ...<br>");
+            xmlhttp.send(null);
+            if(xmlhttp.status == 200 || xmlhttp.status == 0){
+                let thoughts = xmlhttp.responseText.split('%');
+                let random_index = Math.floor(Math.random() * (thoughts.length));
+                thoughts = thoughts[random_index].split('\t')
+                this.stdout(thoughts[0] + '<br>');
+                this.stdout(`<span style=\"color:var(--terminal-magenta);\">&emsp;&emsp;&emsp;${thoughts[1]}</span>`);
+            } else {
+                console.log(xmlhttp.status)
+                this.stderr("<span style=\"color:var(--terminal-red);\">Error: Something went wrong. Try Again</span>");
+            }
+
+            return true;
         }
     },
     rm: {
