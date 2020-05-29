@@ -25,8 +25,8 @@ body {
 
 @media only screen and (min-width: 768px) {
 	body {
-		--site-font-size: 24px;
-		--site-line-spacing: 3rem;
+		--site-font-size: 20px;
+		--site-line-spacing: 2.5rem;
 		--spacing-small: 8px;
 		--spacing-large: 24px;
 		--ascii-font-size: 12px;
@@ -54,7 +54,13 @@ body {
 	margin-left: 2%;
 	margin-right: 2%;
 	font-size: var(--ascii-font-size);
-	line-height: 0.6em;
+	line-height: 0.5em;
+}
+
+.love {
+    margin-left: 2%;
+    margin-right: 2%;
+    line-height: 0em;
 }
 
 .ascii-banner > pre {
@@ -76,10 +82,8 @@ body {
 	margin-top: var(--spacing-large);
 }
 
-footer {
-	text-align: center;
-	font-size: 20px;
-	bottom: 0;
+.highlight {
+	color: var(--terminal-magenta)
 }
 
 .prompt-username {
@@ -118,17 +122,6 @@ span.animated:after {
 	animation: cursor 500ms infinite;
 }
 
-input[type=text] {
-	border: none;
-	background-color: black;
-	width: 0px;
-	font-family: 'cascadia-mono', serif;
-	transition: width 0.5s;
-	font-size: var(--site-font-size);
-	color: transparent;
-	text-shadow: 0 0 0 transparent;
-}
-
 #splash {
 	color: var(--terminal-white);
 	height: 100%;
@@ -146,11 +139,25 @@ input[type=text] {
 	height: 100%;
 }
 
+input[type=text] {
+	border: none;
+	background-color: transparent;
+	font-family: 'cascadia-mono', serif;
+	transition: width 0.5s;
+	font-size: var(--site-font-size);
+	color: var(--terminal-white);
+	text-shadow: 0 0 0 transparent;
+}
+
 input[type=text]:focus {
 	border: none;
-	background-color: black;
+	background-color: transparent;
 	min-width: 0px;
 	outline: 0;
+}
+
+input[type=text]:hover {
+	cursor: default;
 }
 
 span.remove-anim:after {
