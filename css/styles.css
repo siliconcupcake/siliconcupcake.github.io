@@ -37,6 +37,15 @@ body {
 		font-size: var(--site-font-size);
 		line-height: var(--site-line-spacing);
 	}
+
+	.pwd > .prompt {
+		display: flex;
+		width: 95%;
+	}
+
+	input[type=text] {
+		flex: 1;
+	}
 }
 
 #matrix-canvas {

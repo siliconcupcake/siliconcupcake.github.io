@@ -17,7 +17,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("resume").help();
             }
 
@@ -36,7 +36,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("github").help();
             }
 
@@ -62,7 +62,7 @@ let commands = {
         callback: function (args) {
             let site = args[0];
             if (args.length !== 1 || site[0] !== '-') {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("contact").help();
             }
 
@@ -101,7 +101,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("blog").help();
             }
 
@@ -119,7 +119,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("showerthought").help();
             }
 
@@ -133,10 +133,10 @@ let commands = {
                 let random_index = Math.floor(Math.random() * (thoughts.length));
                 thoughts = thoughts[random_index].split('\t')
                 this.stdout(thoughts[0] + '<br>');
-                this.stdout(`<span style=\"color:var(--terminal-magenta);\">&emsp;&emsp;&emsp;${thoughts[1]}</span>`);
+                this.stdout(`<span style='color:var(--terminal-magenta);'>&emsp;&emsp;&emsp;${thoughts[1]}</span>`);
             } else {
                 console.log(xmlhttp.status)
-                this.stderr("<span style=\"color:var(--terminal-red);\">Error: Something went wrong. Try Again</span>");
+                this.stderr("<span style='color:var(--terminal-red);'>Error: Something went wrong. Try Again</span>");
             }
 
             return true;
@@ -152,7 +152,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 1) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("cat").help();
             }
 
@@ -163,18 +163,18 @@ let commands = {
                     "I'm Nandha Kishore, a CSE undergrad at NIT Tiruchirappalli, one of the best learning institutes in the" +
                     "country." +
                     "I am currently a Software Engineer at Microsoft, and I love to code." +
-                    "To know more about me, take a look at my resume with the <span class=\"highlight\"><a " +
-                    "class=\"hyperlink\" href=\"resources/resume.pdf\" target=\"_blank\">'resume'</a></span> command." +
+                    "To know more about me, take a look at my resume with the <span class='highlight'><a " +
+                    "class='hyperlink' href='resources/resume.pdf' target='_blank'>'resume'</a></span> command." +
                     "If you don't trust me, you can checkout my projects on github, by executing the <span " +
-                    "class=\"highlight\"><a class=\"hyperlink\" href=\"https://github.com/siliconcupcake\" target=\"_blank\">'github'</a></span>" +
+                    "class='highlight'><a class='hyperlink' href='https://github.com/siliconcupcake' target='_blank'>'github'</a></span>" +
                     "command." +
-                    "If you wish to connect with me, use the <span class=\"highlight\"><a " +
-                    "class=\"hyperlink\" href=\"https://www.linkedin.com/in/nandha-kishore-j\" target=\"_blank\">'contact'</a></span> command" +
+                    "If you wish to connect with me, use the <span class='highlight'><a " +
+                    "class='hyperlink' href='https://www.linkedin.com/in/nandha-kishore-j' target='_blank'>'contact'</a></span> command" +
                     "to reach out." +
-                    "To learn the different shell commands use the <span class=\"highlight\">'help'</span> command." +
-                    "Also, don't worry if you're too lazy to do all that. I got you covered." +
+                    "To learn the different shell commands use the <span class='highlight'>'help'</span> command." +
+                    "Also, don't worry if you're too lazy to do all that. I've got you covered." +
                     "Just click on the pink links in this message to go to corresponding pages." +
-                    "If you have nothing else to do on the site, you can <span class=\"highlight\">'exit'</span>."
+                    "If you have nothing else to do on the site, you can <span class='highlight'>'exit'</span>."
                 return stdout;
             }
 
@@ -192,7 +192,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("clear").help();
             }
 
@@ -219,7 +219,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length === 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("rm").help();
             }
 
@@ -269,7 +269,7 @@ let commands = {
             let stdout = '';
 
             if (this.utils.isEmpty(stdin)) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("man").help();
             }
 
@@ -303,7 +303,7 @@ let commands = {
         callback: function (args) {
 
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("exit").help();
             }
 
