@@ -106,6 +106,11 @@ body {
 	display: block;
 }
 
+.hyperlink {
+	color: inherit;
+	text-decoration: none;
+}
+
 span.user-command {
 	color: var(--terminal-white);
 	margin: 0%;
