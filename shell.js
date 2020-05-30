@@ -10,27 +10,7 @@ class shell {
 		this.utils = new utils();
 
 		this.options = document.getElementById("default-options");
-		this.pwd = document.getElementsByClassName("pwd");
-		this.command = document.getElementsByClassName("command");
-		this.response = document.getElementsByClassName("response");
-
-		this.response[this.current].className = "response hidden";
-		this.pwd[this.current].className = "pwd visible";
-
-		// Set up input handlers and focus
-		this.input = this.command[this.current];
-		this.input.value = "";
-		this.input.addEventListener('keydown', this._keydown.bind(this));
-		this.input.addEventListener('keyup', this._keyup.bind(this));
-		this.input.focus();
-		this.input.removeAttribute('readOnly');
-
-		window.scrollTo(0, document.body.scrollHeight);
-
-		// Make sure we always focus the input
-		window.addEventListener('click', function (e) {
-			this.input.focus();
-		}.bind(this));
+		this.setupCommandLine()
 
 		if (this.utils.isEmpty(commands) || typeof commands != 'object') {
 			this.utils.except("Commands must be an object and must not be empty!");
@@ -41,11 +21,7 @@ class shell {
 
 	}
 
-	createNewCommandLine() {
-		var clone = this.options.cloneNode(true);
-		clone.id = "options" + this.current;
-		document.getElementById("terminal").appendChild(clone);
-
+	setupCommandLine() {
 		this.pwd = document.getElementsByClassName("pwd");
 		this.command = document.getElementsByClassName("command");
 		this.response = document.getElementsByClassName("response");
@@ -59,8 +35,8 @@ class shell {
 		this.input.value = "";
 		this.input.addEventListener('keydown', this._keydown.bind(this));
 		this.input.addEventListener('keyup', this._keyup.bind(this));
-		this.input.focus();
 		this.input.removeAttribute('readOnly');
+		this.input.focus();
 
 		window.scrollTo(0, document.body.scrollHeight);
 		window.addEventListener('click', function (e) {
@@ -68,9 +44,18 @@ class shell {
 		}.bind(this));
 	}
 
+	createNewCommandLine() {
+		this.current++;
+		var clone = this.options.cloneNode(true);
+		clone.id = "options" + this.current;
+		document.getElementById("terminal").appendChild(clone);
+		this.setupCommandLine()
+	}
+
 	call(user_command) {
 		// Add to history
-		this.history.unshift(user_command);
+		if (this.history[0] !== user_command)
+			this.history.unshift(user_command);
 
 		// Separate command from args
 		let args = user_command.split(' ');
@@ -144,8 +129,12 @@ class shell {
 			this.call(stdin);
 			this.clear();
 
-			if (stdin !== "exit") {
-				this.current++;
+			if (stdin === "clear") {
+				this.input.removeAttribute('readOnly');
+				this.input.focus();
+			}
+
+			if (stdin !== "exit" && stdin !== "clear") {
 				this.createNewCommandLine();
 			}
 

@@ -142,6 +142,65 @@ let commands = {
             return true;
         }
     },
+    cat: {
+        help: function (args) {
+            return '<strong>USAGE:</strong>' +
+                '&nbsp;&nbsp;cat FILE<br>' +
+                '<strong>DESCRIPTION:</strong>' +
+                '&nbsp;&nbsp;Print the contents of the specified file.<br>';
+        },
+
+        callback: function (args) {
+            if (args.length !== 1) {
+                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                return this.commands.get("cat").help();
+            }
+
+            let file = args[0];
+
+            if (file == "about_me.txt") {
+                let stdout = "Well, hello there (:<br>" +
+                    "I'm Nandha Kishore, a CSE undergrad at NIT Tiruchirappalli, one of the best learning institutes in the country." +
+                    "I am currently a Software Engineer at Microsoft, and I love to code." +
+                    "To know more about me, take a look at my resume with the <span class=\"highlight\">'resume'</span> command." +
+                    "If you don't trust me, you can checkout my projects on github, by executing the <span class=\"highlight\">'github'</span> command." +
+                    "If you wish to connect with me, use the <span class=\"highlight\">'contact'</span> command to reach out." +
+                    "To learn the different shell commands use the <span class=\"highlight\">'help'</span> command." +
+                    "If you have nothing else to do on the site, you can <span class=\"highlight\">'exit'</span>."
+                return stdout;
+            }
+
+            this.stderr("The file requested does not exist.");
+            return true;
+        }
+    },
+    clear: {
+        help: function (args) {
+            return '<strong>USAGE:</strong>' +
+                '&nbsp;&nbsp;clear<br>' +
+                '<strong>DESCRIPTION:</strong>' +
+                '&nbsp;&nbsp;Clear the terminal screen.';
+        },
+
+        callback: function (args) {
+            if (args.length !== 0) {
+                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                return this.commands.get("clear").help();
+            }
+
+            let terminal = document.getElementById("terminal");
+            let options = document.getElementsByClassName("options").length;
+            for (let index = 1; index < options; index++){
+                let node = document.getElementById("options" + index);
+                terminal.removeChild(node);
+            }
+
+            this.current = 0;
+            this.options = document.getElementById("default-options");
+            this.setupCommandLine();
+            return true;
+        }
+    },
     rm: {
         help: function (args) {
             return '<strong>USAGE:</strong>' +
@@ -168,13 +227,21 @@ let commands = {
             return true;
         }
     },
+    sudo: {
+        callback: function (args) {
+            this.stderr("Who do you think you are, huh?");
+            return true;
+        }
+    },
     help: {
         callback: function (args) {
             let keys = this.commands.keys();
             let stdout = '<strong>COMMAND LIST:</strong><br>';
 
             for (var i in keys) {
-                stdout += `${keys[i]},&emsp;`;
+                if (keys[i] !== "sudo") {
+                    stdout += `${keys[i]},&emsp;`;
+                }
             };
 
             stdout = stdout.slice(0, -7);
