@@ -23,7 +23,6 @@ bootup = bootup.split(',');
 var startBoot;
 
 window.onload = matrixAnim;
-// window.onload = beginPage;
 
 function beginSplash() {
 	document.getElementById("splash").className = "visible";

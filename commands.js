@@ -22,7 +22,7 @@ let commands = {
             }
 
             this.stdout("Compiling project list...<br>Opening resume.pdf");
-            window.open('resume.pdf', '_blank');
+            window.open('resources/resume.pdf', '_blank');
             return true;
         }
     },
@@ -125,7 +125,8 @@ let commands = {
 
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "resources/showerthoughts", false);
-            this.stdout("Fetching ShowerThought ...<br>");
+            this.stdout("Fetching ShowerThought...<br>");
+            window.scrollTo(0, document.body.scrollHeight);
             xmlhttp.send(null);
             if(xmlhttp.status == 200 || xmlhttp.status == 0){
                 let thoughts = xmlhttp.responseText.split('%');

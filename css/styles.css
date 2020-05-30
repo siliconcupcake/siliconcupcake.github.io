@@ -144,6 +144,7 @@ input[type=text] {
 	background-color: transparent;
 	font-family: 'cascadia-mono', serif;
 	transition: width 0.5s;
+	text-transform: lowercase;
 	font-size: var(--site-font-size);
 	color: var(--terminal-white);
 	text-shadow: 0 0 0 transparent;
