@@ -92,7 +92,11 @@ body {
 }
 
 .highlight {
-	color: var(--terminal-magenta)
+	color: var(--terminal-blue)
+}
+
+.text-highlight {
+	color: var(--terminal-magenta);
 }
 
 .prompt-username {

@@ -123,9 +123,9 @@ let commands = {
                 return this.commands.get("showerthought").help();
             }
 
+            this.stdout("Fetching ShowerThought...<br>");
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "resources/showerthoughts", false);
-            this.stdout("Fetching ShowerThought...<br>");
             window.scrollTo(0, document.body.scrollHeight);
             xmlhttp.send(null);
             if (xmlhttp.status == 200 || xmlhttp.status == 0) {
@@ -160,20 +160,23 @@ let commands = {
 
             if (file == "about_me.txt") {
                 let stdout = "Well, hello there (:<br>" +
-                    "I'm Nandha Kishore, a CSE undergrad at NIT Tiruchirappalli, one of the best learning institutes in the" +
+                    "I'm <span class='text-highlight'>Nandha Kishore</span>, a <span class='text-highlight'>CSE undergrad" +
+                        "from NIT Tiruchirappalli</span>, one of the best learning institutes in the" +
                     "country." +
-                    "I am currently a Software Engineer at Microsoft, and I love to code." +
-                    "To know more about me, take a look at my resume with the <span class='highlight'><a " +
-                    "class='hyperlink' href='resources/resume.pdf' target='_blank'>'resume'</a></span> command." +
-                    "If you don't trust me, you can checkout my projects on github, by executing the <span " +
-                    "class='highlight'><a class='hyperlink' href='https://github.com/siliconcupcake' target='_blank'>'github'</a></span>" +
+                    "I am currently a <span class='text-highlight'>Software Engineer at Microsoft</span>, and I love to write" +
+                    "code that helps make my life easier." +
+                    "To know more about me, take a look at my resume with the <span class='highlight'><a class='hyperlink'" +
+                            "href='resources/resume.pdf' target='_blank'>'resume'</a></span> command." +
+                    "If you don't trust me, you can checkout my projects on github, by executing the <span" +
+                        "class='highlight'><a class='hyperlink' href='https://github.com/siliconcupcake'" +
+                            "target='_blank'>'github'</a></span>" +
                     "command." +
-                    "If you wish to connect with me, use the <span class='highlight'><a " +
-                    "class='hyperlink' href='https://www.linkedin.com/in/nandha-kishore-j' target='_blank'>'contact'</a></span> command" +
+                    "If you wish to connect with me, use the <span class='highlight'><a class='hyperlink'" +
+                            "href='https://www.linkedin.com/in/nandha-kishore-j' target='_blank'>'contact'</a></span> command" +
                     "to reach out." +
                     "To learn the different shell commands use the <span class='highlight'>'help'</span> command." +
                     "Also, don't worry if you're too lazy to do all that. I've got you covered." +
-                    "Just click on the pink links in this message to go to corresponding pages." +
+                    "Just click on the blue links in this message to go to corresponding pages." +
                     "If you have nothing else to do on the site, you can <span class='highlight'>'exit'</span>."
                 return stdout;
             }
