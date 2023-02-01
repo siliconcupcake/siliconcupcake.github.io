@@ -17,12 +17,12 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("resume").help();
             }
 
             this.stdout("Compiling project list...<br>Opening resume.pdf");
-            window.open('resume.pdf', '_blank');
+            window.open('resources/resume.pdf', '_blank');
             return true;
         }
     },
@@ -36,7 +36,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("github").help();
             }
 
@@ -62,7 +62,7 @@ let commands = {
         callback: function (args) {
             let site = args[0];
             if (args.length !== 1 || site[0] !== '-') {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("contact").help();
             }
 
@@ -101,7 +101,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("blog").help();
             }
 
@@ -119,25 +119,96 @@ let commands = {
 
         callback: function (args) {
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("showerthought").help();
             }
 
+            this.stdout("Fetching ShowerThought...<br>");
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", "resources/showerthoughts", false);
-            this.stdout("Fetching ShowerThought ...<br>");
+            window.scrollTo(0, document.body.scrollHeight);
             xmlhttp.send(null);
-            if(xmlhttp.status == 200 || xmlhttp.status == 0){
+            if (xmlhttp.status == 200 || xmlhttp.status == 0) {
                 let thoughts = xmlhttp.responseText.split('%');
                 let random_index = Math.floor(Math.random() * (thoughts.length));
                 thoughts = thoughts[random_index].split('\t')
                 this.stdout(thoughts[0] + '<br>');
-                this.stdout(`<span style=\"color:var(--terminal-magenta);\">&emsp;&emsp;&emsp;${thoughts[1]}</span>`);
+                this.stdout(`<span style='color:var(--terminal-magenta);'>&emsp;&emsp;&emsp;${thoughts[1]}</span>`);
             } else {
                 console.log(xmlhttp.status)
-                this.stderr("<span style=\"color:var(--terminal-red);\">Error: Something went wrong. Try Again</span>");
+                this.stderr("<span style='color:var(--terminal-red);'>Error: Something went wrong. Try Again</span>");
             }
 
+            return true;
+        }
+    },
+    cat: {
+        help: function (args) {
+            return '<strong>USAGE:</strong>' +
+                '&nbsp;&nbsp;cat FILE<br>' +
+                '<strong>DESCRIPTION:</strong>' +
+                '&nbsp;&nbsp;Print the contents of the specified file.<br>';
+        },
+
+        callback: function (args) {
+            if (args.length !== 1) {
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
+                return this.commands.get("cat").help();
+            }
+
+            let file = args[0];
+
+            if (file == "about_me.txt") {
+                let stdout = "Well, hello there (:<br>" +
+                    "I'm <span class='text-highlight'>Nandha Kishore</span>, a <span class='text-highlight'>CSE undergrad" +
+                        "from NIT Tiruchirappalli</span>, one of the best learning institutes in the" +
+                    "country." +
+                    "I am currently a <span class='text-highlight'>Software Engineer at Microsoft</span>, and I love to write" +
+                    "code that helps make my life easier." +
+                    "To know more about me, take a look at my resume with the <span class='highlight'><a class='hyperlink'" +
+                            "href='resources/resume.pdf' target='_blank'>'resume'</a></span> command." +
+                    "If you don't trust me, you can checkout my projects on github, by executing the <span" +
+                        "class='highlight'><a class='hyperlink' href='https://github.com/siliconcupcake'" +
+                            "target='_blank'>'github'</a></span>" +
+                    "command." +
+                    "If you wish to connect with me, use the <span class='highlight'><a class='hyperlink'" +
+                            "href='https://www.linkedin.com/in/nandha-kishore-j' target='_blank'>'contact'</a></span> command" +
+                    "to reach out." +
+                    "To learn the different shell commands use the <span class='highlight'>'help'</span> command." +
+                    "Also, don't worry if you're too lazy to do all that. I've got you covered." +
+                    "Just click on the blue links in this message to go to corresponding pages." +
+                    "If you have nothing else to do on the site, you can <span class='highlight'>'exit'</span>."
+                return stdout;
+            }
+
+            this.stderr("The file requested does not exist.");
+            return true;
+        }
+    },
+    clear: {
+        help: function (args) {
+            return '<strong>USAGE:</strong>' +
+                '&nbsp;&nbsp;clear<br>' +
+                '<strong>DESCRIPTION:</strong>' +
+                '&nbsp;&nbsp;Clear the terminal screen.';
+        },
+
+        callback: function (args) {
+            if (args.length !== 0) {
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
+                return this.commands.get("clear").help();
+            }
+
+            let terminal = document.getElementById("terminal");
+            let options = document.getElementsByClassName("options").length;
+            for (let index = 1; index < options; index++) {
+                let node = document.getElementById("options" + index);
+                terminal.removeChild(node);
+            }
+
+            this.current = 0;
+            this.options = document.getElementById("default-options");
+            this.setupCommandLine();
             return true;
         }
     },
@@ -151,7 +222,7 @@ let commands = {
 
         callback: function (args) {
             if (args.length === 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("rm").help();
             }
 
@@ -167,13 +238,21 @@ let commands = {
             return true;
         }
     },
+    sudo: {
+        callback: function (args) {
+            this.stderr("Who do you think you are, huh?");
+            return true;
+        }
+    },
     help: {
         callback: function (args) {
             let keys = this.commands.keys();
             let stdout = '<strong>COMMAND LIST:</strong><br>';
 
             for (var i in keys) {
-                stdout += `${keys[i]},&emsp;`;
+                if (keys[i] !== "sudo") {
+                    stdout += `${keys[i]},&emsp;`;
+                }
             };
 
             stdout = stdout.slice(0, -7);
@@ -193,7 +272,7 @@ let commands = {
             let stdout = '';
 
             if (this.utils.isEmpty(stdin)) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("man").help();
             }
 
@@ -227,7 +306,7 @@ let commands = {
         callback: function (args) {
 
             if (args.length !== 0) {
-                this.stderr("<span style=\"color:var(--terminal-red);\">Incorrect Usage</span><br>");
+                this.stderr("<span style='color:var(--terminal-red);'>Incorrect Usage</span><br>");
                 return this.commands.get("exit").help();
             }
 

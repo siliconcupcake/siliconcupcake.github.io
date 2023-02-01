@@ -37,6 +37,15 @@ body {
 		font-size: var(--site-font-size);
 		line-height: var(--site-line-spacing);
 	}
+
+	.pwd > .prompt {
+		display: flex;
+		width: 95%;
+	}
+
+	input[type=text] {
+		flex: 1;
+	}
 }
 
 #matrix-canvas {
@@ -83,7 +92,11 @@ body {
 }
 
 .highlight {
-	color: var(--terminal-magenta)
+	color: var(--terminal-blue)
+}
+
+.text-highlight {
+	color: var(--terminal-magenta);
 }
 
 .prompt-username {
@@ -104,6 +117,11 @@ body {
 
 .visible {
 	display: block;
+}
+
+.hyperlink {
+	color: inherit;
+	text-decoration: none;
 }
 
 span.user-command {
@@ -144,6 +162,7 @@ input[type=text] {
 	background-color: transparent;
 	font-family: 'cascadia-mono', serif;
 	transition: width 0.5s;
+	text-transform: lowercase;
 	font-size: var(--site-font-size);
 	color: var(--terminal-white);
 	text-shadow: 0 0 0 transparent;

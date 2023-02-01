@@ -2,27 +2,27 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="description" content="My Portfolio Website">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset='UTF-8'>
+	<meta name='description' content='My Portfolio Website'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<title>Nandha Kishore J</title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-	<link rel="shortcut icon" href="resources/shortcut.png">
+	<link rel='stylesheet' type='text/css' href='css/styles.css'>
+	<link rel='stylesheet' type='text/css' href='css/stylesheet.css'>
+	<link rel='shortcut icon' href='resources/shortcut.png'>
 </head>
 
 <body>
-	<canvas id="matrix-canvas"></canvas>
+	<canvas id='matrix-canvas'></canvas>
 
-	<div class="hidden" id="splash">
+	<div class='hidden' id='splash'>
 		<p>
-			<span id="boot-sequence"></span>
-			<span class="animated" id="splash-cursor"></span>
+			<span id='boot-sequence'></span>
+			<span class='animated' id='splash-cursor'></span>
 		</p>
 	</div>
 
-	<div class="hidden" id="terminal">
-		<div class=ascii-banner>
+	<div class='hidden' id='terminal'>
+		<div class='ascii-banner'>
 			<pre>
 				<br>
          █████               ████  ████ <br>
@@ -36,49 +36,60 @@
 			</pre>
 		</div>
 
-		<div class=love>
-			<p>Made with <span class=highlight>❤</span> by Nandha Kishore</p>
+		<div class='love'>
+			<p>Made with <span class='text-highlight'>❤</span> by Nandha Kishore</p>
 		</div>
 
-		<h4 id="intro-pwd">
-			<div class="prompt">
-				<span class="prompt-username"> siliconcupcake </span>
-				<span class="prompt-arrow"> → </span>
-				<span class="prompt-directory"> /usr/bin </span>
-				<span class="animated" id="init-cursor"></span>
+		<h4 id='intro-pwd'>
+			<div class='prompt'>
+				<span class='prompt-username'> siliconcupcake </span>
+				<span class='prompt-arrow'> → </span>
+				<span class='prompt-directory'> /usr/bin </span>
+				<span class='animated' id='init-cursor'></span>
 			</div>
 		</h4>
-		<p id="intro-response">
-			<span class="remove-anim" id="cmd-cursor"></span>
-			<span class="hidden" id="about">
+		<p id='intro-response'>
+			<span class='remove-anim' id='cmd-cursor'></span>
+			<span class='hidden' id='about'>
 				Well, hello there (:<br>
-				I'm Nandha Kishore, a CSE undergrad at NIT Tiruchirappalli, one of the best learning institutes in the
+				I'm <span class='text-highlight'>Nandha Kishore</span>, a <span class='text-highlight'>CSE undergrad
+					from NIT Tiruchirappalli</span>, one of the best learning institutes in the
 				country.
-				I am currently a Software Engineer at Microsoft, and I love to code.
-				To know more about me, take a look at my resume with the <span class="highlight">'resume'</span> command.
-				If you don't trust me, you can checkout my projects on github, by executing the <span class="highlight">'github'</span> command.
-				If you wish to connect with me, use the <span class="highlight">'contact'</span> command to reach out.
-				To learn the different shell commands use the <span class="highlight">'help'</span> command.
-				If you have nothing else to do on the site, you can <span class="highlight">'exit'</span>.
+				I am currently a <span class='text-highlight'>Software Engineer at Microsoft</span>, and I love to write
+				code that helps make my life easier.
+				To know more about me, take a look at my resume with the <span class='highlight'><a class='hyperlink'
+						href='resources/resume.pdf' target='_blank'>'resume'</a></span> command.
+				If you don't trust me, you can checkout my projects on github, by executing the <span
+					class='highlight'><a class='hyperlink' href='https://github.com/siliconcupcake'
+						target='_blank'>'github'</a></span>
+				command.
+				If you wish to connect with me, use the <span class='highlight'><a class='hyperlink'
+						href='https://www.linkedin.com/in/nandha-kishore-j' target='_blank'>'contact'</a></span> command
+				to reach out.
+				To learn the different shell commands use the <span class='highlight'>'help'</span> command.
+				Also, don't worry if you're too lazy to do all that. I've got you covered.
+				Just click on the blue links in this message to go to corresponding pages.
+				If you have nothing else to do on the site, you can <span class='highlight'>'exit'</span>.
 			</span>
 		</p>
 
-		<div class="options" id="default-options">
-			<h4 class="hidden pwd">
-				<div class="prompt">
-					<span class="prompt-username"> siliconcupcake </span>
-					<span class="prompt-arrow"> → </span>
-					<span class="prompt-directory"> /usr/bin </span>
-					<input type="text" name="option" class="command" spellcheck="false">
+		<div class='options' id='default-options'>
+			<h4 class='hidden pwd'>
+				<div class='prompt'>
+					<span class='prompt-username'> siliconcupcake&nbsp; </span>
+					<span class='prompt-arrow'> →&nbsp; </span>
+					<span class='prompt-directory'> /usr/bin&nbsp; </span>
+					<input type='text' name='option' class='command' spellcheck='false' autocorrect='off'
+						autocapitalize='none'>
 				</div>
 			</h4>
-			<p class="hidden response"> </p>
+			<p class='hidden response'> </p>
 		</div>
 	</div>
 
-	<script src="commands.js"></script>
-	<script src="shell.js"></script>
-	<script src="index.js"></script>
+	<script src='commands.js'></script>
+	<script src='shell.js'></script>
+	<script src='index.js'></script>
 </body>
 
 </html>
